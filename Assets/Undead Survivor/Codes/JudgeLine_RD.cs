@@ -29,8 +29,15 @@ public class JudgeLineRD : MonoBehaviour
             enemiesInRange.Clear();
             isEnemyInRange = false;
 
-            Player.count += 1;
-            GuageBar.slidervalue += 1;
+            if (Player.ultimate)
+            {
+
+            }
+            else
+            {
+                Player.count += 1;
+                GuageBar.slidervalue += 1;
+            }
         }
     }
 }

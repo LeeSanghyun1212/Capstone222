@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
@@ -13,6 +14,8 @@ public class Player : MonoBehaviour
     SpriteRenderer spriter;
 
     public GuageBar guageBar;
+
+    public static bool ultimate = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -34,6 +37,11 @@ public class Player : MonoBehaviour
     {
         inputVec = value.Get<Vector2>();
     }
+
+    void Ultioff()
+    {
+        ultimate = false;
+    }
     void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S))
@@ -49,6 +57,9 @@ public class Player : MonoBehaviour
         {
             GuageBar.reset = true;
             count = 0;
+
+            ultimate = true;
+            Invoke("Ultioff", 5f);
         }
     }
 }
