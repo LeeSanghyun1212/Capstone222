@@ -15,7 +15,6 @@ public class JudgeLine2 : MonoBehaviour
     {
         if (other.CompareTag("enemy"))
         {
-            
             isEnemyInRange = true;
             enemiesInRange.Add(other);
         }

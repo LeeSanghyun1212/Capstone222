@@ -13,8 +13,6 @@ public class Player : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriter;
 
-    public GuageBar guageBar;
-
     public static bool ultimate = false;
 
     // Start is called before the first frame update
@@ -40,6 +38,7 @@ public class Player : MonoBehaviour
 
     void Ultioff()
     {
+        Ulti.on = false;
         ultimate = false;
     }
     void LateUpdate()
@@ -55,10 +54,13 @@ public class Player : MonoBehaviour
 
         if(count >= 10 && Input.GetKeyDown(KeyCode.Space))
         {
+            Ulti.on = true;
             GuageBar.reset = true;
+
             count = 0;
 
             ultimate = true;
+
             Invoke("Ultioff", 5f);
         }
     }
