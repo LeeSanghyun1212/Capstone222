@@ -8,6 +8,7 @@ using UnityEngine.UIElements.Experimental;
 public class Ulti : MonoBehaviour
 {
     public static bool on = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,14 +18,7 @@ public class Ulti : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(!on)
-        {
-            gameObject.SetActive(false);
-        }
-        else
-        {
-            gameObject.SetActive(true);
-        }
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -33,5 +27,15 @@ public class Ulti : MonoBehaviour
         {
             Destroy(collision.gameObject);
         }
+    }
+
+    public void Activative()
+    {
+        gameObject.SetActive(true);
+    }
+
+    public void UnActivative()
+    {
+        gameObject.SetActive(false);
     }
 }

@@ -1700,11 +1700,11 @@ GameObject:
   - component: {fileID: 1654449642}
   m_Layer: 0
   m_Name: Circle
-  m_TagString: Untagged
+  m_TagString: ulti
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1654449639
 Transform:
   m_ObjectHideFlags: 0
@@ -2014,6 +2014,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inputVec: {x: 0, y: 0}
   speed: 0
+  ultiobj: {fileID: 1654449638}
 --- !u!1 &1725626302
 GameObject:
   m_ObjectHideFlags: 0
