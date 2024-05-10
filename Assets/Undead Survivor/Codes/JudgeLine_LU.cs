@@ -25,7 +25,7 @@ public class JudgeLine2 : MonoBehaviour
         {
             foreach (var enemy in enemiesInRange)
             {
-                Destroy(enemy.gameObject);
+                enemy.gameObject.SetActive(false);
             }
             enemiesInRange.Clear();
             isEnemyInRange = false;

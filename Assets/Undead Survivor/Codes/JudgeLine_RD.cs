@@ -24,7 +24,7 @@ public class JudgeLineRD : MonoBehaviour
         {
             foreach (var enemy in enemiesInRange)
             {
-                Destroy(enemy.gameObject);
+                enemy.gameObject.SetActive(false);
             }
             enemiesInRange.Clear();
             isEnemyInRange = false;

@@ -58,6 +58,7 @@ public class Player : MonoBehaviour
         if(count >= 10 && Input.GetKeyDown(KeyCode.Space))
         {
             GuageBar.reset = true;
+            ultimate = true;
 
             count = 0;
 

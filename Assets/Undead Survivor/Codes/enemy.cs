@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class enemy : MonoBehaviour
 {
-    public float speed = 2.5f;
+    public float speed = 5f;
     public Rigidbody2D target;
     public float playtime = 0f;
 
@@ -29,19 +29,26 @@ public class enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        playtime = Time.timeSinceLevelLoad;
+        if(Player.ultimate)
+        {
 
-        if(playtime >= 5)
-        {
-            speed = 3f;
         }
-        if(playtime >= 7)
+        else
         {
-            speed = 4f;
-        }
-        if(playtime >= 10)
-        {
-            speed = 5f;
+            playtime = Time.timeSinceLevelLoad;
+
+            if (playtime >= 5)
+            {
+                speed = 8f;
+            }
+            if (playtime >= 7)
+            {
+                speed = 12f;
+            }
+            if (playtime >= 10)
+            {
+                speed = 15f;
+            }
         }
     }
     void OnTriggerEnter2D(Collider2D other)

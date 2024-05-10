@@ -24,14 +24,15 @@ public class JudgeLine : MonoBehaviour
         {
             foreach (var enemy in enemiesInRange)
             {
-                Destroy(enemy.gameObject);
+                enemy.gameObject.SetActive(false);
             }
             enemiesInRange.Clear();
             isEnemyInRange = false;
 
             if(Player.ultimate)
             {
-
+                Player.count = 0;
+                GuageBar.slidervalue = 0;
             }
             else
             {

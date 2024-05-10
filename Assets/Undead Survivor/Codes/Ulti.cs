@@ -25,7 +25,7 @@ public class Ulti : MonoBehaviour
     {
         if(collision.gameObject.tag == "enemy")
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
         }
     }
 

@@ -7,6 +7,8 @@ public class Spawn : MonoBehaviour
     public Transform[] spawnPoint;
 
     float timer_LU, timer_LD, timer_RU, timer_RD;
+    float spawntimer = 0;
+    int spawnnum = 0;
 
     void Awake()
     {
@@ -17,29 +19,60 @@ public class Spawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timer_LU += Time.deltaTime;
-        timer_LD += Time.deltaTime;
-        timer_RU += Time.deltaTime;
-        timer_RD += Time.deltaTime;
-        if (timer_LU > 1f)
+        //timer_lu += time.deltatime;
+        //timer_ld += time.deltatime;
+        //timer_ru += time.deltatime;
+        //timer_rd += time.deltatime;
+        //if (timer_lu > 1f)
+        //{
+        //    spawnposition_lu();
+        //    timer_lu = 0;
+        //}
+        //else if (timer_ld > 1.4f)
+        //{
+        //    spawnposition_ld();
+        //    timer_ld = 0;
+        //}
+        //else if (timer_ru > 1.7f)
+        //{
+        //    spawnposition_ru();
+        //    timer_ru = 0;
+        //}
+        //else if (timer_rd > 1.9f)
+        //{
+        //    spawnposition_rd();
+        //    timer_rd = 0;
+        //}
+
+        spawntimer += Time.deltaTime;
+
+        if(spawntimer >= 0.3f)
         {
-            SpawnPosition_LU();
-            timer_LU = 0;
+            spawnnum = Random.Range(1, 5);
+            spawntimer = 0;
         }
-        else if (timer_LD > 1.4f)
+        
+        switch(spawnnum)
         {
-            SpawnPosition_LD();
-            timer_LD = 0;
-        }
-        else if (timer_RU > 1.7f)
-        {
-            SpawnPosition_RU();
-            timer_RU = 0;
-        }
-        else if (timer_RD > 1.9f)
-        {
-            SpawnPosition_RD();
-            timer_RD = 0;
+            case 1:
+                spawnnum = 0;
+                SpawnPosition_LD();
+                break;
+            case 2:
+                spawnnum = 0;
+                SpawnPosition_LU();
+                break;
+            case 3:
+                spawnnum = 0;
+                SpawnPosition_RD();
+                break;
+            case 4:
+                spawnnum = 0;
+                SpawnPosition_RU();
+                break;
+            default:
+                spawnnum = 0;
+                break;
         }
     }
     void SpawnPosition_RU()
