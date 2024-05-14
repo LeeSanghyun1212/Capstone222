@@ -8,6 +8,7 @@ public class MainAudioControl : MonoBehaviour
 {
     public AudioMixer masterMixer;
     public Slider audioSlider;
+
     public void AudioControl()
     {
         float sound = audioSlider.value;
