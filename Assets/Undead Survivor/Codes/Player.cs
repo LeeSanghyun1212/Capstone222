@@ -10,6 +10,10 @@ public class Player : MonoBehaviour
     public Vector2 inputVec;
     public float speed;
     public static float count = 0;
+    public static int sturncnt = 0;
+
+    public static bool sturnon = false;
+
     Rigidbody2D rigid;
     SpriteRenderer spriter;
 
@@ -44,6 +48,13 @@ public class Player : MonoBehaviour
         ultiobj.SetActive(false);
         ultimate = false;
     }
+
+    void sturnoff()
+    {
+        Debug.Log("Can Move");
+        sturncnt = 0;
+        sturnon = false;
+    }
     void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S))
@@ -65,6 +76,14 @@ public class Player : MonoBehaviour
             ultiobj.SetActive(true);
 
             Invoke("Ultioff", 5f);
+        }
+
+        if(sturncnt > 3)
+        {
+            Debug.Log("Player Sturned!");
+            sturnon = true;
+
+            Invoke("sturnoff", 1f);
         }
     }
 }

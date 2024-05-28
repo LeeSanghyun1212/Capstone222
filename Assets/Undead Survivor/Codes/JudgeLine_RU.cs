@@ -20,25 +20,41 @@ public class JudgeLine : MonoBehaviour
     }    
     void Update() 
     {
-        if (isEnemyInRange == true && Input.GetKeyDown(KeyCode.J))
+        if(!Player.sturnon)
         {
-            foreach (var enemy in enemiesInRange)
+            if (isEnemyInRange == true && Input.GetKeyDown(KeyCode.J))
             {
-                enemy.gameObject.SetActive(false);
-            }
-            enemiesInRange.Clear();
-            isEnemyInRange = false;
+                foreach (var enemy in enemiesInRange)
+                {
+                    enemy.gameObject.SetActive(false);
+                }
+                enemiesInRange.Clear();
+                isEnemyInRange = false;
 
-            if(Player.ultimate)
-            {
-                Player.count = 0;
-                GuageBar.slidervalue = 0;
+                if (Player.ultimate)
+                {
+                    Player.count = 0;
+                    GuageBar.slidervalue = 0;
+                }
+                else
+                {
+                    Player.count += 1;
+                    GuageBar.slidervalue += 1;
+                }
+
+                if(Player.sturncnt > 0)
+                {
+                    Player.sturncnt--;
+                }
             }
-            else
+            else if(isEnemyInRange != true && Input.GetKeyDown(KeyCode.J))
             {
-                Player.count += 1;
-                GuageBar.slidervalue += 1;
+                Player.sturncnt++;
             }
+        }
+        else
+        {
+
         }
     }
 }
