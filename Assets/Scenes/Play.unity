@@ -3624,6 +3624,7 @@ MonoBehaviour:
   resumeButton: {fileID: 1147551364}
   restartButton: {fileID: 906179403}
   quitButton: {fileID: 680158606}
+  audioBgm: {fileID: 193356318}
 --- !u!1 &1875775441
 GameObject:
   m_ObjectHideFlags: 0
