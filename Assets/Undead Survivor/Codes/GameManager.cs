@@ -37,9 +37,5 @@ public class GameManager : MonoBehaviour
         }
              
     }
-    public void EndGame()
-    {
-        Debug.Log("Game Over");
-        SceneManager.LoadScene("Main");
-    }
+    
 }

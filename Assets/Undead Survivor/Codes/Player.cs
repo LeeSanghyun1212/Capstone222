@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -55,6 +56,13 @@ public class Player : MonoBehaviour
         sturncnt = 0;
         sturnon = false;
     }
+
+    public void EndGame()
+    {
+        Debug.Log("Game Over");
+        SceneManager.LoadScene("Main");
+    }
+
     void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S))

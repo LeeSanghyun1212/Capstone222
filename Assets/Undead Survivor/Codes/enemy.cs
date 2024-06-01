@@ -55,7 +55,13 @@ public class enemy : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.Instance.EndGame();
+            Player player = other.GetComponent<Player>();
+
+            if(player != null)
+            {
+                player.EndGame();
+            }
+            
         }   
     }
     void OnEnable()
