@@ -63,6 +63,19 @@ public class PauseOnPlay : MonoBehaviour
 
     public void OnClickQuitButton()
     {
-        
+        Time.timeScale = 1;
+        isPause = false;
+        pauseScreen.gameObject.SetActive(false);
+
+        SceneManager.LoadScene("Main");
+    }
+
+    public void OnClickRestartButton()
+    {
+        Time.timeScale = 1;
+        isPause = false;
+        pauseScreen.gameObject.SetActive(false);
+
+        SceneManager.LoadScene("Play");
     }
 }

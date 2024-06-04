@@ -46,7 +46,7 @@ public class Spawn : MonoBehaviour
 
         spawntimer += Time.deltaTime;
 
-        if(spawntimer >= 0.3f)
+        if(spawntimer >= 1f)
         {
             spawnnum = Random.Range(1, 5);
             spawntimer = 0;

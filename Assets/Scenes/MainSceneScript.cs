@@ -17,9 +17,18 @@ public class MainSceneScript : MonoBehaviour
     public Text keyMappingText;
     public Button turnBackButton;
 
+    public Text mainTitleBef;
+    public Text mainTitleAft;
+    public Text optionTitle;
+    public Button keymapButton;
+
     // Start is called before the first frame update
     void Start()
     {
+        mainTitleBef.gameObject.SetActive(true);
+        mainTitleAft.gameObject.SetActive(false);
+        optionTitle.gameObject.SetActive(false);
+
         startButton.gameObject.SetActive(false);
         optionsButton.gameObject.SetActive(false);
         exitButton.gameObject.SetActive(false);
@@ -30,6 +39,8 @@ public class MainSceneScript : MonoBehaviour
         volumeSlider.gameObject.SetActive(false);
         keyMappingText.gameObject.SetActive(false);
         turnBackButton.gameObject.SetActive(false);
+
+        keymapButton.gameObject.SetActive(false);
 
         anyKeyButton.onClick.AddListener(ShowMainTitle);
 
@@ -48,6 +59,10 @@ public class MainSceneScript : MonoBehaviour
     // anyKeyButton, turnBackButton
     private void ShowMainTitle()
     {
+        mainTitleBef.gameObject.SetActive(false);
+        mainTitleAft.gameObject.SetActive(true);
+        optionTitle.gameObject.SetActive(false);
+
         anyKeyButton.gameObject.SetActive(false);
 
         startButton.gameObject.SetActive(true);
@@ -60,6 +75,8 @@ public class MainSceneScript : MonoBehaviour
         volumeSlider.gameObject.SetActive(false);
         keyMappingText.gameObject.SetActive(false);
         turnBackButton.gameObject.SetActive(false);
+
+        keymapButton.gameObject.SetActive(false);
     }
 
     // optionsButton
@@ -77,6 +94,11 @@ public class MainSceneScript : MonoBehaviour
         volumeSlider.gameObject.SetActive(true);
         keyMappingText.gameObject.SetActive(true);
         turnBackButton.gameObject.SetActive(true);
+
+        mainTitleAft.gameObject.SetActive(false);
+        optionTitle.gameObject.SetActive(true);
+
+        keymapButton.gameObject.SetActive(true);
     }
     // exitButton
     private void GameExit()

@@ -65,33 +65,48 @@ public class Player : MonoBehaviour
 
     void LateUpdate()
     {
-        if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S))
+        if(ultimate)
         {
-            spriter.flipX = true; // 왼쪽을 바라보도록 설정
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S))
+            {
+                spriter.flipX = false; // 왼쪽을 바라보도록 설정
+            }
+            else if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.K))
+            {
+                spriter.flipX = true; // 오른쪽을 바라보도록 설정
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.K))
+        else
         {
-            spriter.flipX = false; // 오른쪽을 바라보도록 설정
+            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S))
+            {
+                spriter.flipX = false; // 왼쪽을 바라보도록 설정
+            }
+            else if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.K))
+            {
+                spriter.flipX = true; // 오른쪽을 바라보도록 설정
+            }
+
+            if (count >= 10 && Input.GetKeyDown(KeyCode.Space))
+            {
+                GuageBar.reset = true;
+                ultimate = true;
+
+                count = 0;
+
+                ultiobj.SetActive(true);
+
+                Invoke("Ultioff", 5f);
+            }
+
+            if (sturncnt > 3)
+            {
+                Debug.Log("Player Sturned!");
+                sturnon = true;
+
+                Invoke("sturnoff", 1f);
+            }
         }
-
-        if(count >= 10 && Input.GetKeyDown(KeyCode.Space))
-        {
-            GuageBar.reset = true;
-            ultimate = true;
-
-            count = 0;
-
-            ultiobj.SetActive(true);
-
-            Invoke("Ultioff", 5f);
-        }
-
-        if(sturncnt > 3)
-        {
-            Debug.Log("Player Sturned!");
-            sturnon = true;
-
-            Invoke("sturnoff", 1f);
-        }
+        
     }
 }

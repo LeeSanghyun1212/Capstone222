@@ -22,7 +22,7 @@ public class JudgeLine : MonoBehaviour
     {
         if(!Player.sturnon)
         {
-            if (isEnemyInRange == true && Input.GetKeyDown(KeyCode.J))
+            if (isEnemyInRange == true && Input.GetKeyDown(KeyCode.K))
             {
                 foreach (var enemy in enemiesInRange)
                 {

@@ -35,20 +35,20 @@ public class enemy : MonoBehaviour
         }
         else
         {
-            playtime = Time.timeSinceLevelLoad;
+            //playtime = Time.timeSinceLevelLoad;
 
-            if (playtime >= 5)
-            {
-                speed = 8f;
-            }
-            if (playtime >= 7)
-            {
-                speed = 12f;
-            }
-            if (playtime >= 10)
-            {
-                speed = 15f;
-            }
+            //if (playtime >= 5)
+            //{
+            //    speed = 8f;
+            //}
+            //if (playtime >= 7)
+            //{
+            //    speed = 12f;
+            //}
+            //if (playtime >= 10)
+            //{
+            //    speed = 15f;
+            //}
         }
     }
     void OnTriggerEnter2D(Collider2D other)
