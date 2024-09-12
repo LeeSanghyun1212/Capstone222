@@ -98,14 +98,6 @@ public class Player : MonoBehaviour
 
                 Invoke("Ultioff", 5f);
             }
-
-            if (sturncnt > 3)
-            {
-                Debug.Log("Player Sturned!");
-                sturnon = true;
-
-                Invoke("sturnoff", 1f);
-            }
         }
         
     }

@@ -1,6 +1,7 @@
 using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,8 +9,7 @@ public class JudgeLine2 : MonoBehaviour
 {
     private bool isEnemyInRange = false;
     private List<Collider2D> enemiesInRange = new List<Collider2D>();
-
-
+    GameObject obj;
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,41 +21,16 @@ public class JudgeLine2 : MonoBehaviour
     }
     void Update()
     {
-        if (!Player.sturnon)
+        if (isEnemyInRange == true && Input.GetKeyDown(KeyCode.S))
         {
-            if (isEnemyInRange == true && Input.GetKeyDown(KeyCode.S))
+            foreach (var enemy in enemiesInRange)
             {
-                foreach (var enemy in enemiesInRange)
-                {
-                    enemy.gameObject.SetActive(false);
-                }
-                enemiesInRange.Clear();
-                isEnemyInRange = false;
-
-                if (Player.ultimate)
-                {
-
-                }
-                else
-                {
-                    Player.count += 1;
-                    GuageBar.slidervalue += 1;
-                }
-
-                if (Player.sturncnt > 0)
-                {
-                    Player.sturncnt--;
-                }
+                Destroy(enemy);
             }
-            else if (isEnemyInRange != true && Input.GetKeyDown(KeyCode.S))
-            {
-                Player.sturncnt++;
-            }
+            enemiesInRange.Clear();
+            isEnemyInRange = false;
+            obj = GameObject.Find("Spawn");
+            obj.GetComponent<Spawn>().spawntimer = 1f;
         }
-        else
-        {
-
-        }
-        
     }
 }

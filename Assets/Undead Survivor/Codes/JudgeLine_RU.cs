@@ -8,53 +8,29 @@ public class JudgeLine : MonoBehaviour
 {
     private bool isEnemyInRange = false;
     private List<Collider2D> enemiesInRange = new List<Collider2D>();
-
+    GameObject obj;
 
     void OnTriggerEnter2D(Collider2D other)
-    { if (other.CompareTag("enemy"))
+    {
+        if (other.CompareTag("enemy"))
         {
-            
+
             isEnemyInRange = true;
             enemiesInRange.Add(other);
         }
-    }    
-    void Update() 
+    }
+    void Update()
     {
-        if(!Player.sturnon)
+        if (isEnemyInRange == true && Input.GetKeyDown(KeyCode.K))
         {
-            if (isEnemyInRange == true && Input.GetKeyDown(KeyCode.K))
+            foreach (var enemy in enemiesInRange)
             {
-                foreach (var enemy in enemiesInRange)
-                {
-                    enemy.gameObject.SetActive(false);
-                }
-                enemiesInRange.Clear();
-                isEnemyInRange = false;
-
-                if (Player.ultimate)
-                {
-                    Player.count = 0;
-                    GuageBar.slidervalue = 0;
-                }
-                else
-                {
-                    Player.count += 1;
-                    GuageBar.slidervalue += 1;
-                }
-
-                if(Player.sturncnt > 0)
-                {
-                    Player.sturncnt--;
-                }
+                Destroy(enemy);
             }
-            else if(isEnemyInRange != true && Input.GetKeyDown(KeyCode.J))
-            {
-                Player.sturncnt++;
-            }
-        }
-        else
-        {
-
+            enemiesInRange.Clear();
+            isEnemyInRange = false;
+            obj = GameObject.Find("Spawn");
+            obj.GetComponent<Spawn>().spawntimer = 1f;
         }
     }
 }
