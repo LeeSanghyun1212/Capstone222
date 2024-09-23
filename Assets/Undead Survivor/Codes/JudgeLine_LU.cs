@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class JudgeLine2 : MonoBehaviour
+public class JudgeLine_LU : MonoBehaviour
 {
     private bool isEnemyInRange = false;
     private List<Collider2D> enemiesInRange = new List<Collider2D>();
 
-
+    void Awake()
+    {
+        KeyBindings.LoadKeys();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -23,7 +26,7 @@ public class JudgeLine2 : MonoBehaviour
     {
         if (!Player.sturnon)
         {
-            if (isEnemyInRange == true && Input.GetKeyDown(KeyCode.S))
+            if (isEnemyInRange == true && Input.GetKeyDown(KeyBindings.Judge_Line_LU))
             {
                 foreach (var enemy in enemiesInRange)
                 {
@@ -47,7 +50,7 @@ public class JudgeLine2 : MonoBehaviour
                     Player.sturncnt--;
                 }
             }
-            else if (isEnemyInRange != true && Input.GetKeyDown(KeyCode.S))
+            else if (isEnemyInRange != true && Input.GetKeyDown(KeyBindings.Judge_Line_LU))
             {
                 Player.sturncnt++;
             }

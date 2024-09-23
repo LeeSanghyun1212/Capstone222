@@ -4,11 +4,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class JudgeLine3 : MonoBehaviour
+public class JudgeLine_LD : MonoBehaviour
 {
     private bool isEnemyInRange = false;
     private List<Collider2D> enemiesInRange = new List<Collider2D>();
 
+    void Awake()
+    {
+        KeyBindings.LoadKeys();
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -23,7 +27,7 @@ public class JudgeLine3 : MonoBehaviour
     {
         if (!Player.sturnon)
         {
-            if (isEnemyInRange == true && Input.GetKeyDown(KeyCode.D))
+            if (isEnemyInRange == true && Input.GetKeyDown(KeyBindings.Judge_Line_LD))
             {
                 foreach (var enemy in enemiesInRange)
                 {
@@ -47,11 +51,12 @@ public class JudgeLine3 : MonoBehaviour
                     Player.sturncnt--;
                 }
             }
-            else if (isEnemyInRange != true && Input.GetKeyDown(KeyCode.D))
+            // 적이 범위안에 있을때 키를 입력한 경우
+            else if (isEnemyInRange != true && Input.GetKeyDown(KeyBindings.Judge_Line_LD))
             {
                 Player.sturncnt++;
             }
-        }
+        } 
         else
         {
 

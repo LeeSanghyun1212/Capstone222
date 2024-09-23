@@ -29,6 +29,7 @@ public class Player : MonoBehaviour
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
         rigid.isKinematic = true;
+        KeyBindings.LoadKeys();
     }
     
     // Update is called once per frame
