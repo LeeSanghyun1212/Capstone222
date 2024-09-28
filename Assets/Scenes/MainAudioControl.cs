@@ -9,6 +9,7 @@ public class MainAudioControl : MonoBehaviour
     public AudioMixer masterMixer;
     public Slider audioSlider;
 
+    // 처음 실행 시 오디오 볼륨의 값을 -20f으로 지정 후 슬라이더에 적용
     void Start()
     {
         float currentVolume = PlayerPrefs.GetFloat("AudioMaster", -20f);
@@ -20,8 +21,9 @@ public class MainAudioControl : MonoBehaviour
     {
         float sound = audioSlider.value;
 
+        // PlayerPrefs에 오디오 볼륨의 값을 지정
         PlayerPrefs.SetFloat("AudioMaster", sound);
-        PlayerPrefs.Save();
+        PlayerPrefs.Save(); // 지정한 값을 저장
 
         SetVolume(sound);
 
