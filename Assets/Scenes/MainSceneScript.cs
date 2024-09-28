@@ -12,6 +12,7 @@ public class MainSceneScript : MonoBehaviour
 
     public Text resolutionText;
     public Dropdown resolutionDropdown;
+    public Toggle resolutionToggle;
     public Text volumeText;
     public Slider volumeSlider;
     public Text keyMappingText;
@@ -51,6 +52,7 @@ public class MainSceneScript : MonoBehaviour
 
         resolutionText.gameObject.SetActive(false);
         resolutionDropdown.gameObject.SetActive(false);
+        resolutionToggle.gameObject.SetActive(false);
         volumeText.gameObject.SetActive(false);
         volumeSlider.gameObject.SetActive(false);
         keyMappingText.gameObject.SetActive(false);
@@ -109,6 +111,7 @@ public class MainSceneScript : MonoBehaviour
 
         resolutionText.gameObject.SetActive(false);
         resolutionDropdown.gameObject.SetActive(false);
+        resolutionToggle.gameObject.SetActive(false);
         volumeText.gameObject.SetActive(false);
         volumeSlider.gameObject.SetActive(false);
         keyMappingText.gameObject.SetActive(false);
@@ -138,6 +141,7 @@ public class MainSceneScript : MonoBehaviour
 
         resolutionText.gameObject.SetActive(true);
         resolutionDropdown.gameObject.SetActive(true);
+        resolutionToggle.gameObject.SetActive(true);
         volumeText.gameObject.SetActive(true);
         volumeSlider.gameObject.SetActive(true);
         keyMappingText.gameObject.SetActive(true);
