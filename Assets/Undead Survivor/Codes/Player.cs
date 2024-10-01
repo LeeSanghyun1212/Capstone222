@@ -68,22 +68,22 @@ public class Player : MonoBehaviour
     {
         if(ultimate)
         {
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyBindings.Judge_Line_LU) || Input.GetKeyDown(KeyBindings.Judge_Line_LD))
             {
                 spriter.flipX = false; // 왼쪽을 바라보도록 설정
             }
-            else if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.K))
+            else if (Input.GetKeyDown(KeyBindings.Judge_Line_RU) || Input.GetKeyDown(KeyBindings.Judge_Line_RD))
             {
                 spriter.flipX = true; // 오른쪽을 바라보도록 설정
             }
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyBindings.Judge_Line_LU) || Input.GetKeyDown(KeyBindings.Judge_Line_LD))
             {
                 spriter.flipX = false; // 왼쪽을 바라보도록 설정
             }
-            else if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown(KeyCode.K))
+            else if (Input.GetKeyDown(KeyBindings.Judge_Line_RU) || Input.GetKeyDown(KeyBindings.Judge_Line_RD))
             {
                 spriter.flipX = true; // 오른쪽을 바라보도록 설정
             }
