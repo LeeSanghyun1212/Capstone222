@@ -8,6 +8,8 @@ public class JudgeLine : MonoBehaviour
 {
     private bool isEnemyInRange = false;
     private List<Collider2D> enemiesInRange = new List<Collider2D>();
+
+    GameObject obj;
     void Awake()
     {
         KeyBindings.LoadKeys();
@@ -49,6 +51,16 @@ public class JudgeLine : MonoBehaviour
                 {
                     Player.sturncnt--;
                 }
+
+                foreach (var enemy in enemiesInRange)
+                {
+                    Destroy(enemy);
+                }
+
+                enemiesInRange.Clear();
+                isEnemyInRange = false;
+                obj = GameObject.Find("Spawn");
+                obj.GetComponent<Spawn>().spawntimer = 1f;
             }
             else if(isEnemyInRange != true && Input.GetKeyDown(KeyBindings.Judge_Line_RU))
             {

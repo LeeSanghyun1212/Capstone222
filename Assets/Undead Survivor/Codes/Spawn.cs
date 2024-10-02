@@ -6,9 +6,9 @@ public class Spawn : MonoBehaviour
 {
     public Transform[] spawnPoint;
 
-    float timer_LU, timer_LD, timer_RU, timer_RD;
-    float spawntimer = 0;
-    int spawnnum = 0;
+    public float spawntimer = 0;
+    public int spawnnum = 0;
+    int decoynum = 0;
 
     void Awake()
     {
@@ -19,39 +19,24 @@ public class Spawn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //timer_lu += time.deltatime;
-        //timer_ld += time.deltatime;
-        //timer_ru += time.deltatime;
-        //timer_rd += time.deltatime;
-        //if (timer_lu > 1f)
-        //{
-        //    spawnposition_lu();
-        //    timer_lu = 0;
-        //}
-        //else if (timer_ld > 1.4f)
-        //{
-        //    spawnposition_ld();
-        //    timer_ld = 0;
-        //}
-        //else if (timer_ru > 1.7f)
-        //{
-        //    spawnposition_ru();
-        //    timer_ru = 0;
-        //}
-        //else if (timer_rd > 1.9f)
-        //{
-        //    spawnposition_rd();
-        //    timer_rd = 0;
-        //}
-
         spawntimer += Time.deltaTime;
 
         if(spawntimer >= 1f)
         {
             spawnnum = Random.Range(1, 5);
             spawntimer = 0;
+
+            if (decoynum == spawnnum && spawnnum < 4)
+            {
+                spawnnum += 1;
+            }
+            else if (decoynum == spawnnum && spawnnum >= 4)
+            {
+                spawnnum -= 1;
+            }
+            decoynum = spawnnum;
         }
-        
+
         switch(spawnnum)
         {
             case 1:
@@ -77,22 +62,34 @@ public class Spawn : MonoBehaviour
     }
     void SpawnPosition_RU()
     {
+        GameObject obj = GameObject.FindGameObjectWithTag("enemy");
+        Destroy(obj);
         GameObject enemy = GameManager.Instance.pool.Get(0);
         enemy.transform.position = spawnPoint[1].position;        
     }
     void SpawnPosition_LU()
-    {        
-        GameObject enemy2 = GameManager.Instance.pool.Get(1);
-        enemy2.transform.position = spawnPoint[4].position;       
+    {
+        GameObject obj = GameObject.FindGameObjectWithTag("enemy");
+        Destroy(obj);
+        GameObject enemy2 = GameManager.Instance.pool.Get(0);
+        enemy2.transform.position = spawnPoint[4].position;
     }
     void SpawnPosition_LD()
     {
-        GameObject enemy3 = GameManager.Instance.pool.Get(2);
+        GameObject obj = GameObject.FindGameObjectWithTag("enemy");
+        Destroy(obj);
+        GameObject enemy3 = GameManager.Instance.pool.Get(0);
         enemy3.transform.position = spawnPoint[3].position;
     }
     void SpawnPosition_RD()
     {
-        GameObject enemy4 = GameManager.Instance.pool.Get(3);
+        GameObject obj = GameObject.FindGameObjectWithTag("enemy");
+        Destroy(obj);
+        GameObject enemy4 = GameManager.Instance.pool.Get(0);
         enemy4.transform.position = spawnPoint[2].position;
+    }
+    public void Respawn()
+    {
+        spawntimer = 1f;
     }
 }
