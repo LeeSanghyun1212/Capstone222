@@ -12,8 +12,10 @@ public class Player : MonoBehaviour
     public float speed;
     public static float count = 0;
     public static int sturncnt = 0;
+    public static int killcount = 0;
 
     public static bool sturnon = false;
+    public static bool finish = false;
 
     Rigidbody2D rigid;
     SpriteRenderer spriter;
@@ -66,7 +68,7 @@ public class Player : MonoBehaviour
 
     void LateUpdate()
     {
-        if(ultimate)
+        if(ultimate && Player.finish == false)
         {
             if (Input.GetKeyDown(KeyBindings.Judge_Line_LU) || Input.GetKeyDown(KeyBindings.Judge_Line_LD))
             {

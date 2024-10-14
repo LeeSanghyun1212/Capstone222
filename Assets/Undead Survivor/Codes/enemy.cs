@@ -48,7 +48,6 @@ public class enemy : MonoBehaviour
             {
                 player.EndGame();
             }
-            
         }   
     }
     void OnEnable()

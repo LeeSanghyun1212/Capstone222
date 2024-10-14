@@ -27,7 +27,7 @@ public class JudgeLine_LD : MonoBehaviour
     }
     void Update()
     {
-        if (!Player.sturnon)
+        if (!Player.sturnon && Player.finish == false)
         {
             if (isEnemyInRange == true && Input.GetKeyDown(KeyBindings.Judge_Line_LD))
             {
@@ -45,7 +45,7 @@ public class JudgeLine_LD : MonoBehaviour
                 else
                 {
                     Player.count += 1;
-                    GuageBar.slidervalue += 1;
+                    Player.killcount += 1;
                 }
 
                 if (Player.sturncnt > 0)

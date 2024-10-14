@@ -1,64 +1,92 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Spawn : MonoBehaviour
 {
     public Transform[] spawnPoint;
 
     public float spawntimer = 0;
+    public static int timeLimit = 20;
     public int spawnnum = 0;
     int decoynum = 0;
+
+    public GameObject obj;
 
     void Awake()
     {
         spawnPoint = GetComponentsInChildren<Transform>();
         
-        
     }
     // Update is called once per frame
     void Update()
     {
-        spawntimer += Time.deltaTime;
-
-        if(spawntimer >= 1f)
+        if(Player.finish == false)
         {
-            spawnnum = Random.Range(1, 5);
-            spawntimer = 0;
+            if (GameManager.surviveTime >= 0)
+            {
+                if (Player.killcount < 20)
+                {
+                    spawntimer += Time.deltaTime;
+                }
+                else
+                {
+                    Player.finish = true;
+                }
 
-            if (decoynum == spawnnum && spawnnum < 4)
-            {
-                spawnnum += 1;
+                if (spawntimer >= 1f)
+                {
+                    spawnnum = Random.Range(1, 5);
+                    spawntimer = 0;
+
+                    if (decoynum == spawnnum && spawnnum < 4)
+                    {
+                        spawnnum += 1;
+                    }
+                    else if (decoynum == spawnnum && spawnnum >= 4)
+                    {
+                        spawnnum -= 1;
+                    }
+                    decoynum = spawnnum;
+                }
+
+                switch (spawnnum)
+                {
+                    case 1:
+                        spawnnum = 0;
+                        SpawnPosition_LD();
+                        break;
+                    case 2:
+                        spawnnum = 0;
+                        SpawnPosition_LU();
+                        break;
+                    case 3:
+                        spawnnum = 0;
+                        SpawnPosition_RD();
+                        break;
+                    case 4:
+                        spawnnum = 0;
+                        SpawnPosition_RU();
+                        break;
+                    default:
+                        spawnnum = 0;
+                        break;
+                }
             }
-            else if (decoynum == spawnnum && spawnnum >= 4)
+
+            if (GameManager.surviveTime < 0)
             {
-                spawnnum -= 1;
+                GameObject.Find("Player").GetComponent<Player>().EndGame();
             }
-            decoynum = spawnnum;
         }
-
-        switch(spawnnum)
+        else
         {
-            case 1:
-                spawnnum = 0;
-                SpawnPosition_LD();
-                break;
-            case 2:
-                spawnnum = 0;
-                SpawnPosition_LU();
-                break;
-            case 3:
-                spawnnum = 0;
-                SpawnPosition_RD();
-                break;
-            case 4:
-                spawnnum = 0;
-                SpawnPosition_RU();
-                break;
-            default:
-                spawnnum = 0;
-                break;
+
         }
+            
     }
     void SpawnPosition_RU()
     {
