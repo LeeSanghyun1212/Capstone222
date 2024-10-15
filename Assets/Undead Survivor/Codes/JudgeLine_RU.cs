@@ -18,7 +18,6 @@ public class JudgeLine : MonoBehaviour
     void OnTriggerEnter2D(Collider2D other)
     { if (other.CompareTag("enemy"))
         {
-            
             isEnemyInRange = true;
             enemiesInRange.Add(other);
         }
@@ -29,12 +28,12 @@ public class JudgeLine : MonoBehaviour
         {
             if (isEnemyInRange == true && Input.GetKeyDown(KeyBindings.Judge_Line_RU))
             {
-                foreach (var enemy in enemiesInRange)
-                {
-                    enemy.gameObject.SetActive(false);
-                }
-                enemiesInRange.Clear();
-                isEnemyInRange = false;
+                //foreach (var enemy in enemiesInRange)
+                //{
+                //    enemy.gameObject.SetActive(false);
+                //}
+                //enemiesInRange.Clear();
+                //isEnemyInRange = false;
 
                 if (Player.ultimate)
                 {

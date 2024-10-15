@@ -8,8 +8,10 @@ using UnityEngine.SceneManagement;
 public class Spawn : MonoBehaviour
 {
     public Transform[] spawnPoint;
+    private List<Collider2D> enemiesInRange = new List<Collider2D>();
 
     public float spawntimer = 0;
+    public float spawnCycle = 1f;
     public static int timeLimit = 20;
     public int spawnnum = 0;
     int decoynum = 0;
@@ -28,7 +30,7 @@ public class Spawn : MonoBehaviour
         {
             if (GameManager.surviveTime >= 0)
             {
-                if (Player.killcount < 20)
+                if (Player.killcount < 10)
                 {
                     spawntimer += Time.deltaTime;
                 }
@@ -37,7 +39,7 @@ public class Spawn : MonoBehaviour
                     Player.finish = true;
                 }
 
-                if (spawntimer >= 1f)
+                if (spawntimer >= spawnCycle)
                 {
                     spawnnum = Random.Range(1, 5);
                     spawntimer = 0;
@@ -84,7 +86,16 @@ public class Spawn : MonoBehaviour
         }
         else
         {
-
+            if(Input.anyKeyDown)
+            {
+                Debug.Log("Down");
+                GameObject obj = GameObject.FindWithTag("enemy");
+                if(obj != null)
+                {
+                    Destroy(obj);
+                }
+                StartCoroutine(LevelUp());
+            }
         }
             
     }
@@ -119,5 +130,15 @@ public class Spawn : MonoBehaviour
     public void Respawn()
     {
         spawntimer = 1f;
+    }
+
+    IEnumerator LevelUp()
+    {
+        yield return new WaitForSeconds(3.0f);
+        Player.finish = false;
+        Player.killcount = 0;
+        GameManager.surviveTime = 21;
+        spawnCycle -= 0.25f;
+        Debug.Log("OK");
     }
 }

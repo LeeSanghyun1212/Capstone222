@@ -30,12 +30,12 @@ public class JudgeLine_LU : MonoBehaviour
         {
             if (isEnemyInRange == true && Input.GetKeyDown(KeyBindings.Judge_Line_LU))
             {
-                foreach (var enemy in enemiesInRange)
-                {
-                    enemy.gameObject.SetActive(false);
-                }
-                enemiesInRange.Clear();
-                isEnemyInRange = false;
+                //foreach (var enemy in enemiesInRange)
+                //{
+                //    enemy.gameObject.SetActive(false);
+                //}
+                //enemiesInRange.Clear();
+                //isEnemyInRange = false;
 
                 if (Player.ultimate)
                 {
