@@ -37,22 +37,16 @@ public class JudgeLine_LU : MonoBehaviour
                 //enemiesInRange.Clear();
                 //isEnemyInRange = false;
 
-                if (Player.ultimate)
-                {
+                Player.count += 1;
+                Player.killcount += 1;
 
-                }
-                else
-                {
-                    Player.count += 1;
-                    Player.killcount += 1;
-                }
 
                 if (Player.sturncnt > 0)
                 {
                     Player.sturncnt--;
                 }
-                
-                foreach(var enemy in enemiesInRange)
+
+                foreach (var enemy in enemiesInRange)
                 {
                     Destroy(enemy);
                 }
@@ -65,12 +59,13 @@ public class JudgeLine_LU : MonoBehaviour
             else if (isEnemyInRange != true && Input.GetKeyDown(KeyBindings.Judge_Line_LU))
             {
                 Player.sturncnt++;
+                Player.killcount = 0;
             }
         }
         else
         {
 
         }
-        
+
     }
 }

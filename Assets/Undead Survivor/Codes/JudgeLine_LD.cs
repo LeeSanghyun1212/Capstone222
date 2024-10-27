@@ -38,15 +38,10 @@ public class JudgeLine_LD : MonoBehaviour
                 //enemiesInRange.Clear();
                 //isEnemyInRange = false;
 
-                if (Player.ultimate)
-                {
 
-                }
-                else
-                {
-                    Player.count += 1;
-                    Player.killcount += 1;
-                }
+                Player.count += 1;
+                Player.killcount += 1;
+
 
                 if (Player.sturncnt > 0)
                 {
@@ -67,12 +62,13 @@ public class JudgeLine_LD : MonoBehaviour
             else if (isEnemyInRange != true && Input.GetKeyDown(KeyBindings.Judge_Line_LD))
             {
                 Player.sturncnt++;
+                Player.killcount = 0;
             }
-        } 
+        }
         else
         {
 
         }
-        
+
     }
 }

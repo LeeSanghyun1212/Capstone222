@@ -16,15 +16,16 @@ public class JudgeLine : MonoBehaviour
     }
 
     void OnTriggerEnter2D(Collider2D other)
-    { if (other.CompareTag("enemy"))
+    {
+        if (other.CompareTag("enemy"))
         {
             isEnemyInRange = true;
             enemiesInRange.Add(other);
         }
-    }    
-    void Update() 
+    }
+    void Update()
     {
-        if(!Player.sturnon && Player.finish == false)
+        if (!Player.sturnon && Player.finish == false)
         {
             if (isEnemyInRange == true && Input.GetKeyDown(KeyBindings.Judge_Line_RU))
             {
@@ -35,17 +36,11 @@ public class JudgeLine : MonoBehaviour
                 //enemiesInRange.Clear();
                 //isEnemyInRange = false;
 
-                if (Player.ultimate)
-                {
+                Player.count += 1;
+                Player.killcount += 1;
 
-                }
-                else
-                {
-                    Player.count += 1;
-                    Player.killcount += 1;
-                }
 
-                if(Player.sturncnt > 0)
+                if (Player.sturncnt > 0)
                 {
                     Player.sturncnt--;
                 }
@@ -60,9 +55,10 @@ public class JudgeLine : MonoBehaviour
                 obj = GameObject.Find("Spawn");
                 obj.GetComponent<Spawn>().spawntimer = 1f;
             }
-            else if(isEnemyInRange != true && Input.GetKeyDown(KeyBindings.Judge_Line_RU))
+            else if (isEnemyInRange != true && Input.GetKeyDown(KeyBindings.Judge_Line_RU))
             {
                 Player.sturncnt++;
+                Player.killcount = 0;
             }
         }
         else

@@ -12,7 +12,8 @@ public class Spawn : MonoBehaviour
 
     public float spawntimer = 0;
     public float spawnCycle = 1f;
-    public static int timeLimit = 20;
+    public static int timeLimit = 20;   //한 스테이지 제한 시간
+    public static float killLimit = 1.0f;  //킬카운트를 올릴수있는 시간
     public int spawnnum = 0;
     int decoynum = 0;
 
@@ -126,10 +127,6 @@ public class Spawn : MonoBehaviour
         Destroy(obj);
         GameObject enemy4 = GameManager.Instance.pool.Get(0);
         enemy4.transform.position = spawnPoint[2].position;
-    }
-    public void Respawn()
-    {
-        spawntimer = 1f;
     }
 
     IEnumerator LevelUp()

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class enemy : MonoBehaviour
@@ -7,8 +8,6 @@ public class enemy : MonoBehaviour
     public float speed = 0f;
     public Rigidbody2D target;
     public float playtime = 0f;
-
-    bool isLive;    
 
     Rigidbody2D rigid;
     // Start is called before the first frame update
@@ -29,14 +28,7 @@ public class enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Player.ultimate)
-        {
-
-        }
-        else
-        {
-
-        }
+        
     }
     void OnTriggerEnter2D(Collider2D other)
     {

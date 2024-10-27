@@ -26,7 +26,7 @@ public class JudgeLineRD : MonoBehaviour
     }
     void Update()
     {
-        if(!Player.sturnon && Player.finish == false)
+        if (!Player.sturnon && Player.finish == false)
         {
             if (isEnemyInRange == true && Input.GetKeyDown(KeyBindings.Judge_Line_RD))
             {
@@ -37,15 +37,10 @@ public class JudgeLineRD : MonoBehaviour
                 //enemiesInRange.Clear();
                 //isEnemyInRange = false;
 
-                if (Player.ultimate)
-                {
 
-                }
-                else
-                {
-                    Player.count += 1;
-                    Player.killcount += 1;
-                }
+                Player.count += 1;
+                Player.killcount += 1;
+
 
                 if (Player.sturncnt > 0)
                 {
@@ -65,12 +60,13 @@ public class JudgeLineRD : MonoBehaviour
             else if (isEnemyInRange != true && Input.GetKeyDown(KeyBindings.Judge_Line_RD))
             {
                 Player.sturncnt++;
+                Player.killcount = 0;
             }
         }
         else
         {
 
         }
-        
+
     }
 }
