@@ -16,6 +16,20 @@ public class KeyMappingButtonHandler : MonoBehaviour
 
     private string currentKey = "";
 
+    private KeyCode Judge_Line_LU = KeyCode.A;
+    private KeyCode Judge_Line_LD = KeyCode.S;
+    private KeyCode Judge_Line_RU = KeyCode.K;
+    private KeyCode Judge_Line_RD = KeyCode.L;
+
+    private void Start()
+    {
+        // Load saved key mappings at startup
+        LoadKeys();
+        UpdateKeyMappingText_LU(Judge_Line_LU);
+        UpdateKeyMappingText_LD(Judge_Line_LD);
+        UpdateKeyMappingText_RU(Judge_Line_RU);
+        UpdateKeyMappingText_RD(Judge_Line_RD);
+    }
     public void StartKeyMapping(string judgeLine)
     {
         currentKey = judgeLine;
@@ -95,5 +109,25 @@ public class KeyMappingButtonHandler : MonoBehaviour
         keymapButton_LD.interactable = true;
         keymapButton_RU.interactable = true;
         keymapButton_RD.interactable = true;
+    }
+    private void SaveKeys()
+    {
+        PlayerPrefs.SetString("Judge_Line_LU", Judge_Line_LU.ToString());
+        PlayerPrefs.SetString("Judge_Line_LD", Judge_Line_LD.ToString());
+        PlayerPrefs.SetString("Judge_Line_RU", Judge_Line_RU.ToString());
+        PlayerPrefs.SetString("Judge_Line_RD", Judge_Line_RD.ToString());
+        PlayerPrefs.Save();
+    }
+
+    private void LoadKeys()
+    {
+        if (PlayerPrefs.HasKey("Judge_Line_LU"))
+            Judge_Line_LU = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Judge_Line_LU"));
+        if (PlayerPrefs.HasKey("Judge_Line_LD"))
+            Judge_Line_LD = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Judge_Line_LD"));
+        if (PlayerPrefs.HasKey("Judge_Line_RU"))
+            Judge_Line_RU = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Judge_Line_RU"));
+        if (PlayerPrefs.HasKey("Judge_Line_RD"))
+            Judge_Line_RD = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("Judge_Line_RD"));
     }
 }
