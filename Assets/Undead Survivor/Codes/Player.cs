@@ -5,6 +5,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -13,25 +14,37 @@ public class Player : MonoBehaviour
     public static float count = 0;
     public static int sturncnt = 0;
     public static int killcount = 0;
+    public int imageIndex = 0;
 
     public static bool sturnon = false;
     public static bool finish = false;
 
-    Rigidbody2D rigid;
-    SpriteRenderer spriter;
+    public Rigidbody2D rigid;
+    public SpriteRenderer spriter;
+    public Sprite[] attackSprites;
 
-    Ulti ulti;
+    public Ulti ulti;
     public GameObject ultiobj;
 
     public static bool ultimate = false;
 
+    public GameObject darkPanel;
+    public Text gameoverText;
+    public Button restartBtn;
+    public Button gotomainBtn;
+
     // Start is called before the first frame update
     void Awake()
     {
+        Time.timeScale = 1;
+
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
         rigid.isKinematic = true;
         KeyBindings.LoadKeys();
+
+        restartBtn.onClick.AddListener(gameoverRestart);
+        gotomainBtn.onClick.AddListener(gameoverGomain);
     }
     
     // Update is called once per frame
@@ -62,7 +75,22 @@ public class Player : MonoBehaviour
 
     public void EndGame()
     {
-        Debug.Log("Game Over");
+        Time.timeScale = 0;
+        darkPanel.gameObject.SetActive(true);
+        gameoverText.gameObject.SetActive(true);
+        restartBtn.gameObject.SetActive(true);
+        gotomainBtn.gameObject.SetActive(true);
+    }
+
+    void gameoverRestart()
+    {
+        Time.timeScale = 1;
+        SceneManager.LoadScene("Play");
+    }
+
+    void gameoverGomain()
+    {
+        Time.timeScale = 1;
         SceneManager.LoadScene("Main");
     }
 
@@ -72,22 +100,58 @@ public class Player : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyBindings.Judge_Line_LU) || Input.GetKeyDown(KeyBindings.Judge_Line_LD))
             {
-                spriter.flipX = false; // 왼쪽을 바라보도록 설정
+                if(imageIndex == 0)
+                {
+                    imageIndex = 1;
+                }
+                else if(imageIndex == 1)
+                {
+                    imageIndex = 0;
+                }
+                spriter.sprite = attackSprites[imageIndex];
+                spriter.flipX = true; // 왼쪽을 바라보도록 설정
             }
             else if (Input.GetKeyDown(KeyBindings.Judge_Line_RU) || Input.GetKeyDown(KeyBindings.Judge_Line_RD))
             {
-                spriter.flipX = true; // 오른쪽을 바라보도록 설정
+                if (imageIndex == 0)
+                {
+                    imageIndex = 1;
+                }
+                else if (imageIndex == 1)
+                {
+                    imageIndex = 0;
+                }
+                spriter.sprite = attackSprites[imageIndex];
+                spriter.flipX = false; // 오른쪽을 바라보도록 설정
             }
         }
         else
         {
             if (Input.GetKeyDown(KeyBindings.Judge_Line_LU) || Input.GetKeyDown(KeyBindings.Judge_Line_LD))
             {
-                spriter.flipX = false; // 왼쪽을 바라보도록 설정
+                if (imageIndex == 0)
+                {
+                    imageIndex = 1;
+                }
+                else if (imageIndex == 1)
+                {
+                    imageIndex = 0;
+                }
+                spriter.sprite = attackSprites[imageIndex];
+                spriter.flipX = true; // 왼쪽을 바라보도록 설정
             }
             else if (Input.GetKeyDown(KeyBindings.Judge_Line_RU) || Input.GetKeyDown(KeyBindings.Judge_Line_RD))
             {
-                spriter.flipX = true; // 오른쪽을 바라보도록 설정
+                if (imageIndex == 0)
+                {
+                    imageIndex = 1;
+                }
+                else if (imageIndex == 1)
+                {
+                    imageIndex = 0;
+                }
+                spriter.sprite = attackSprites[imageIndex];
+                spriter.flipX = false; // 오른쪽을 바라보도록 설정
             }
 
             //if (count >= 10 && Input.GetKeyDown(KeyCode.Space))

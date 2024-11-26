@@ -31,6 +31,15 @@ public class Spawn : MonoBehaviour
         {
             if (GameManager.surviveTime >= 0)
             {
+                if (Player.count >= 3)
+                {
+                    if (Player.killcount > 0)
+                    {
+                        Player.killcount -= 1;
+                    }
+                    Player.count = 1;
+                }
+
                 if (Player.killcount < 10)
                 {
                     spawntimer += Time.deltaTime;
@@ -44,6 +53,7 @@ public class Spawn : MonoBehaviour
                 {
                     spawnnum = Random.Range(1, 5);
                     spawntimer = 0;
+                    Player.count += 1;
 
                     if (decoynum == spawnnum && spawnnum < 4)
                     {
@@ -87,7 +97,7 @@ public class Spawn : MonoBehaviour
         }
         else
         {
-            if(Input.anyKeyDown)
+            if(Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("Down");
                 GameObject obj = GameObject.FindWithTag("enemy");

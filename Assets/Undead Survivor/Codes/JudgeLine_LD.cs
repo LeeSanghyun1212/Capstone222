@@ -38,8 +38,6 @@ public class JudgeLine_LD : MonoBehaviour
                 //enemiesInRange.Clear();
                 //isEnemyInRange = false;
 
-
-                Player.count += 1;
                 Player.killcount += 1;
 
 
@@ -55,6 +53,7 @@ public class JudgeLine_LD : MonoBehaviour
 
                 enemiesInRange.Clear();
                 isEnemyInRange = false;
+                Player.count = 0;
                 obj = GameObject.Find("Spawn");
                 obj.GetComponent<Spawn>().spawntimer = 1f;
             }
