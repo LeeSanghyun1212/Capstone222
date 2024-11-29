@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
     public Rigidbody2D rigid;
     public SpriteRenderer spriter;
     public Sprite[] attackSprites;
+    public Animator anim;
 
     public Ulti ulti;
     public GameObject ultiobj;
@@ -33,6 +34,11 @@ public class Player : MonoBehaviour
     public Button restartBtn;
     public Button gotomainBtn;
 
+    private AudioSource audioSource;
+    public AudioClip Atksound1;
+    public AudioClip Atksound2;
+    public AudioClip Finishsound;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -40,11 +46,21 @@ public class Player : MonoBehaviour
 
         rigid = GetComponent<Rigidbody2D>();
         spriter = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+
+        anim.enabled = false;
+
         rigid.isKinematic = true;
         KeyBindings.LoadKeys();
 
         restartBtn.onClick.AddListener(gameoverRestart);
         gotomainBtn.onClick.AddListener(gameoverGomain);
+
+        audioSource = GetComponent<AudioSource>();
+        if(audioSource == null )
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
     }
     
     // Update is called once per frame
@@ -85,13 +101,33 @@ public class Player : MonoBehaviour
     void gameoverRestart()
     {
         Time.timeScale = 1;
+        killcount = 0;
         SceneManager.LoadScene("Play");
     }
 
     void gameoverGomain()
     {
         Time.timeScale = 1;
+        killcount = 0;
         SceneManager.LoadScene("Main");
+    }
+
+    void PlayRandomSound()
+    {
+        AudioClip selectedSound = UnityEngine.Random.value > 0.5f ? Atksound1 : Atksound2;
+        
+        audioSource.Stop();
+
+        audioSource.clip = selectedSound;
+        audioSource.Play();
+    }
+
+    public void PlayfinishSound()
+    {
+        audioSource.Stop();
+
+        audioSource.clip = Finishsound;
+        audioSource.Play();
     }
 
     void LateUpdate()
@@ -110,6 +146,7 @@ public class Player : MonoBehaviour
                 }
                 spriter.sprite = attackSprites[imageIndex];
                 spriter.flipX = true; // 왼쪽을 바라보도록 설정
+                PlayRandomSound();
             }
             else if (Input.GetKeyDown(KeyBindings.Judge_Line_RU) || Input.GetKeyDown(KeyBindings.Judge_Line_RD))
             {
@@ -123,6 +160,7 @@ public class Player : MonoBehaviour
                 }
                 spriter.sprite = attackSprites[imageIndex];
                 spriter.flipX = false; // 오른쪽을 바라보도록 설정
+                PlayRandomSound();
             }
         }
         else
@@ -139,6 +177,7 @@ public class Player : MonoBehaviour
                 }
                 spriter.sprite = attackSprites[imageIndex];
                 spriter.flipX = true; // 왼쪽을 바라보도록 설정
+                PlayRandomSound();
             }
             else if (Input.GetKeyDown(KeyBindings.Judge_Line_RU) || Input.GetKeyDown(KeyBindings.Judge_Line_RD))
             {
@@ -152,6 +191,7 @@ public class Player : MonoBehaviour
                 }
                 spriter.sprite = attackSprites[imageIndex];
                 spriter.flipX = false; // 오른쪽을 바라보도록 설정
+                PlayRandomSound();
             }
 
             //if (count >= 10 && Input.GetKeyDown(KeyCode.Space))

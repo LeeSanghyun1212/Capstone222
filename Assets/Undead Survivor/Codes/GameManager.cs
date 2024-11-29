@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
         if(surviveTime > 0 && Player.finish == false)
         {
             surviveTime -= Time.deltaTime;
-            timeText.text = "Time : " + (int)surviveTime;
+            timeText.text = "TIME : " + (int)surviveTime;
         }
     }
     

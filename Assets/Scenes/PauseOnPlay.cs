@@ -66,7 +66,7 @@ public class PauseOnPlay : MonoBehaviour
         Time.timeScale = 1;
         isPause = false;
         pauseScreen.gameObject.SetActive(false);
-
+        Player.killcount = 0;
         SceneManager.LoadScene("Main");
     }
 
@@ -75,7 +75,7 @@ public class PauseOnPlay : MonoBehaviour
         Time.timeScale = 1;
         isPause = false;
         pauseScreen.gameObject.SetActive(false);
-
+        Player.killcount = 0;
         SceneManager.LoadScene("Play");
     }
 }

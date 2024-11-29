@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class JudgeLineRD : MonoBehaviour
 {
-    private bool isEnemyInRange = false;
-    private List<Collider2D> enemiesInRange = new List<Collider2D>();
+    public bool isEnemyInRange = false;
+    public List<Collider2D> enemiesInRange = new List<Collider2D>();
 
     GameObject obj;
 
@@ -19,10 +19,20 @@ public class JudgeLineRD : MonoBehaviour
     {
         if (other.CompareTag("enemy"))
         {
-
             isEnemyInRange = true;
             enemiesInRange.Add(other);
         }
+    }
+    public void ResetEnemiesInRange()
+    {
+        foreach (var enemy in enemiesInRange)
+        {
+            Destroy(enemy);
+        }
+
+        enemiesInRange.Clear();
+        isEnemyInRange = false;
+
     }
     void Update()
     {
@@ -37,6 +47,14 @@ public class JudgeLineRD : MonoBehaviour
                 //enemiesInRange.Clear();
                 //isEnemyInRange = false;
 
+                foreach (var enemy in enemiesInRange)
+                {
+                    Destroy(enemy);
+                }
+
+
+                enemiesInRange.Clear();
+                isEnemyInRange = false;
                 Player.killcount += 1;
 
 
@@ -44,22 +62,18 @@ public class JudgeLineRD : MonoBehaviour
                 {
                     Player.sturncnt--;
                 }
-
-                foreach (var enemy in enemiesInRange)
-                {
-                    Destroy(enemy);
-                }
-
-                enemiesInRange.Clear();
-                isEnemyInRange = false;
                 Player.count = 0;
                 obj = GameObject.Find("Spawn");
-                obj.GetComponent<Spawn>().spawntimer = 1f;
+                if (obj != null)
+                {
+                    obj.GetComponent<Spawn>().spawntimer = 1f;
+                }
             }
             else if (isEnemyInRange != true && Input.GetKeyDown(KeyBindings.Judge_Line_RD))
             {
                 Player.sturncnt++;
                 Player.killcount = 0;
+                Debug.Log("없는데 때림");
             }
         }
         else
@@ -67,5 +81,7 @@ public class JudgeLineRD : MonoBehaviour
 
         }
 
+
     }
+
 }

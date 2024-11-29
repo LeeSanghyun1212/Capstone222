@@ -8,14 +8,15 @@ using UnityEngine.SceneManagement;
 public class Spawn : MonoBehaviour
 {
     public Transform[] spawnPoint;
-    private List<Collider2D> enemiesInRange = new List<Collider2D>();
 
     public float spawntimer = 0;
     public float spawnCycle = 1f;
     public static int timeLimit = 20;   //한 스테이지 제한 시간
     public static float killLimit = 1.0f;  //킬카운트를 올릴수있는 시간
     public int spawnnum = 0;
+    public int spawnnumCP = 0;
     int decoynum = 0;
+    int stageNum = 1;
 
     public GameObject obj;
 
@@ -51,10 +52,33 @@ public class Spawn : MonoBehaviour
 
                 if (spawntimer >= spawnCycle)
                 {
+                    switch (spawnnumCP)
+                    {
+                        case 1:
+                            GameObject.Find("Line_LD").GetComponent<JudgeLine_LD>().ResetEnemiesInRange();
+                            Debug.Log("지움LD");
+                            break;
+                        case 2:
+                            GameObject.Find("Line_LU").GetComponent<JudgeLine_LU>().ResetEnemiesInRange();
+                            Debug.Log("지움LU");
+                            break;
+                        case 3:
+                            GameObject.Find("Line_RD").GetComponent<JudgeLineRD>().ResetEnemiesInRange();
+                            Debug.Log("지움RD");
+                            break;
+                        case 4:
+                            GameObject.Find("Line_RU").GetComponent<JudgeLine>().ResetEnemiesInRange();
+                            Debug.Log("지움RU");
+                            break;
+                        default:
+                            break;
+                    }
+
                     spawnnum = Random.Range(1, 5);
+                    
                     spawntimer = 0;
                     Player.count += 1;
-
+                    
                     if (decoynum == spawnnum && spawnnum < 4)
                     {
                         spawnnum += 1;
@@ -64,6 +88,7 @@ public class Spawn : MonoBehaviour
                         spawnnum -= 1;
                     }
                     decoynum = spawnnum;
+                    spawnnumCP = spawnnum;
                 }
 
                 switch (spawnnum)
@@ -100,25 +125,28 @@ public class Spawn : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("Down");
+                GameObject.Find("Player").GetComponent<Player>().anim.enabled = true;
+                GameObject.Find("Player").GetComponent<Player>().anim.SetTrigger("Finish");
                 GameObject obj = GameObject.FindWithTag("enemy");
                 if(obj != null)
                 {
                     Destroy(obj);
                 }
+                GameObject.Find("Player").GetComponent<Player>().PlayfinishSound();
                 StartCoroutine(LevelUp());
             }
         }
-            
     }
     void SpawnPosition_RU()
     {
         GameObject obj = GameObject.FindGameObjectWithTag("enemy");
         Destroy(obj);
         GameObject enemy = GameManager.Instance.pool.Get(0);
-        enemy.transform.position = spawnPoint[1].position;        
+        enemy.transform.position = spawnPoint[1].position;
     }
     void SpawnPosition_LU()
     {
+        
         GameObject obj = GameObject.FindGameObjectWithTag("enemy");
         Destroy(obj);
         GameObject enemy2 = GameManager.Instance.pool.Get(0);
@@ -126,6 +154,7 @@ public class Spawn : MonoBehaviour
     }
     void SpawnPosition_LD()
     {
+        
         GameObject obj = GameObject.FindGameObjectWithTag("enemy");
         Destroy(obj);
         GameObject enemy3 = GameManager.Instance.pool.Get(0);
@@ -145,7 +174,17 @@ public class Spawn : MonoBehaviour
         Player.finish = false;
         Player.killcount = 0;
         GameManager.surviveTime = 21;
+
+        //if(stageNum <= 2)
+        //{
+        //    spawnCycle -= 0.25f;
+        //}
+        //else if(stageNum <= 4)
+        //{
+        //    spawnCycle -= 0.1f;
+        //}
         spawnCycle -= 0.25f;
+        GameObject.Find("Player").GetComponent<Player>().anim.enabled = false;
         Debug.Log("OK");
     }
 }
