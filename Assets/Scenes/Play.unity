@@ -364,6 +364,7 @@ MonoBehaviour:
   spawntimer: 0
   spawnCycle: 1
   spawnnum: 0
+  spawnnumCP: 0
   obj: {fileID: 0}
 --- !u!4 &61509282
 Transform:
@@ -539,7 +540,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -840,6 +841,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8216b5e99ec38d4499485b46868147be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnemyInRange: 0
   enemiesInRange: []
 --- !u!1 &477460218
 GameObject:
@@ -1060,6 +1062,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53336ff3911a2654ba9660a596288f18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnemyInRange: 0
   enemiesInRange: []
 --- !u!1 &488595186
 GameObject:
@@ -2225,6 +2228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc4592dfc67549a43b603e051eff5be1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnemyInRange: 0
   enemiesInRange: []
 --- !u!1 &900099855
 GameObject:
@@ -5004,6 +5008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0f6ffbdb45c7334387279048210592c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnemyInRange: 0
   enemiesInRange: []
 --- !u!1 &1906120533
 GameObject:
